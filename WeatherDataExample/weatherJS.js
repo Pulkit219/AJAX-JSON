@@ -14,10 +14,11 @@ $.ajax({
 	dataType: 'JSON',
 	success: function(data){
 
-		console.log(data);
+
+
           dataBack.html('weather:' + data.weather[0].main + '<br/>' + 
           	'Description:' + data.weather[0].description + '<br/>' + 'pressure:' +
-          	data.main.pressure + '<br/>'
+          	data.main.pressure + '<br/>' +
           	'humidity:' + data.main.humidity);
 	}
 
@@ -25,7 +26,7 @@ $.ajax({
 
 })
 
-
+//thank you  for watching Pulkit
 
 
 

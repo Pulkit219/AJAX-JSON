@@ -5,13 +5,17 @@ $(document).ready(function(){
 	let $skillsul = $("#skills");
 	let $addbtton = $("#add-skill");
 	
+	function addskill(skill){
+		  $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');
+	}
 
 $.ajax({
 	type: 'GET',
 	url: 'http://rest.learncode.academy/api/pulkit/skills',
 	success: function(skills){
     $.each(skills, function(i , skill){
-        $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');
+    	addskill(skill);
+        // $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');
     });
 
 	},
@@ -34,7 +38,12 @@ $addbtton.on('click', function(){
   url: 'http://rest.learncode.academy/api/pulkit/skills',
   data: data,
   success: function(newskill) {
-    $skillsul.append('<li> Name:' + newskill.name + ' Skill: ' + newskill.skill + '</li>');
+  	addskill(newskill);
+    // $skillsul.append('<li> NAME:' + newskill.name + ' SKILL: ' + newskill.skill + ' ID :' + newskill.id + '</li>');
+  },
+
+  error: function(){
+  	alert("Error saving data");
   }
 });
 

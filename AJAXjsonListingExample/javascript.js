@@ -5,13 +5,15 @@ $(document).ready(function(){
 	let $skillsul = $("#skills");
 	let $addbtton = $("#add-skill");
 
-	var skillTemplate = "" + 
-	"<li>" +
-	"<p><strong>Name:</strong> {{name}}</p>" +
-	"<p><strong>skill:</strong> {{skill}}</p>" +
-	"<p><strong>id:</strong> {{id}}</p>" +
-    "<button data-id='{{id}}' class='remove'>X</button>"+
-    "</li>";
+	var skillTemplate =$('#skill-template').html();
+
+	//  "" + 
+	// "<li>" +
+	// "<p><strong>Name:</strong> {{name}}</p>" +
+	// "<p><strong>skill:</strong> {{skill}}</p>" +
+	// "<p><strong>id:</strong> {{id}}</p>" +
+ //    "<button data-id='{{id}}' class='remove'>X</button>"+
+ //    "</li>";
 	
 	function addskill(skill){
 		  // $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');

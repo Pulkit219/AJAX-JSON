@@ -9,6 +9,16 @@
 <h1>AJAX listing get/post/delete requests</h1>
 <ul id="skills"></ul>
 
+<template id="skill-template">
+	<li>
+	<p><strong>Name:</strong> {{name}}</p>
+	<p><strong>skill:</strong> {{skill}}</p> 
+	<p><strong>id:</strong> {{id}}</p>
+    <button data-id='{{id}}' class='remove'>X</button>
+    </li>
+
+</template>
+
 <h4>Add a skill</h4>
 
 <p>name: <input type="text" id="name"></p> 

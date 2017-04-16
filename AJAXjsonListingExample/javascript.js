@@ -4,6 +4,8 @@ $(document).ready(function(){
 
 	let $skillsul = $("#skills");
 	let $addbtton = $("#add-skill");
+
+	var skillTemplate = "<li> NAME: {{name}} , SKILLS: {{skill}}</li>";
 	
 	function addskill(skill){
 		  $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');

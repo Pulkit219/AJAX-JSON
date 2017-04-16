@@ -2,19 +2,45 @@
 
 $(document).ready(function(){
 
-	var $skillsul = $("#skills");
+	let $skillsul = $("#skills");
+	let $addbtton = $("#add-skill");
+	
 
 $.ajax({
 	type: 'GET',
 	url: 'http://rest.learncode.academy/api/pulkit/skills',
 	success: function(skills){
     $.each(skills, function(i , skill){
-        $skillsul.append('<li> Name:' + skill.name + ' Skill: ' + skill.skill + '</li>');
+        $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');
     });
 
+	},
+
+	error: function(){
+		alert(" Request unsuccessful");
 	}
 
 });
+
+$addbtton.on('click', function(){
+
+	let data = {
+		name:$('#name').val(),
+		skill:$('#skill').val()
+	};
+
+	$.ajax({
+  type: 'POST',
+  url: 'http://rest.learncode.academy/api/pulkit/skills',
+  data: data,
+  success: function(newskill) {
+    $skillsul.append('<li> Name:' + newskill.name + ' Skill: ' + newskill.skill + '</li>');
+  }
+});
+
+});
+
+
 
 
 

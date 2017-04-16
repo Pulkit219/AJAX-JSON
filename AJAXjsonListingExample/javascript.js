@@ -5,10 +5,17 @@ $(document).ready(function(){
 	let $skillsul = $("#skills");
 	let $addbtton = $("#add-skill");
 
-	var skillTemplate = "<li> NAME: {{name}} , SKILLS: {{skill}}</li>";
+	var skillTemplate = "" + 
+	"<li>" +
+	"<p><strong>Name:</strong> {{name}}</p>" +
+	"<p><strong>skill:</strong> {{skill}}</p>" +
+	"<p><strong>id:</strong> {{id}}</p>" +
+    "<button data-id='{{id}}' class='remove'>X</button>"+
+    "</li>";
 	
 	function addskill(skill){
-		  $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');
+		  // $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');
+		  $skillsul.append(Mustache.render(skillTemplate, skill));
 	}
 
 $.ajax({
@@ -18,6 +25,7 @@ $.ajax({
     $.each(skills, function(i , skill){
     	addskill(skill);
         // $skillsul.append('<li> NAME:' + skill.name + ' SKILL: ' + skill.skill + ' ID :' + skill.id + '</li>');
+
     });
 
 	},
@@ -27,6 +35,8 @@ $.ajax({
 	}
 
 });
+
+
 
 $addbtton.on('click', function(){
 
@@ -46,6 +56,28 @@ $addbtton.on('click', function(){
 
   error: function(){
   	alert("Error saving data");
+  }
+});
+
+});
+
+
+
+
+
+
+
+$skillsul.delegate('.remove', 'click', function(){
+
+	let $li = $(this).closest('li');
+	$.ajax({
+  type: 'DELETE',
+  url: 'http://rest.learncode.academy/api/pulkit/skills/'+ $(this).attr('data-id'),
+  success: function() {
+    $li.fadeOut(300, function(){
+     $(this).remove();
+    });
+    console.log('skill Deleted Successfully!');
   }
 });
 

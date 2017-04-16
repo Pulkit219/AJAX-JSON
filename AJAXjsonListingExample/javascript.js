@@ -2,14 +2,14 @@
 
 $(document).ready(function(){
 
-	var $skills = $("#skills");
+	var $skillsul = $("#skills");
 
 $.ajax({
 	type: 'GET',
-	url: 'http://rest.learncode.academy/api/learncode/friends',
+	url: 'http://rest.learncode.academy/api/pulkit/skills',
 	success: function(skills){
     $.each(skills, function(i , skill){
-        $skills.append('<li>skills</li>');
+        $skillsul.append('<li> Name:' + skill.name + ' Skill: ' + skill.skill + '</li>');
     });
 
 	}

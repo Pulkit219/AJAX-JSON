@@ -10,14 +10,27 @@
 <ul id="skills"></ul>
 
 <template id="skill-template">
-	<li>
-	<p><strong>Name:</strong> {{name}}</p>
-	<p><strong>skill:</strong> {{skill}}</p> 
+	<li data-id="{{id}}">
+	<p><strong>Name:</strong> 
+	<span class="noedit name">{{name}}</span>
+	<input class="edit name">
+	</p>
+
+	<p><strong>skill:</strong> 
+	<span class="noedit skill">{{skill}}</span>
+	<input class="edit skill">
+	</p> 
+
 	<p><strong>id:</strong> {{id}}</p>
+
     <button data-id='{{id}}' class='remove'>X</button>
+    <button class="editskills noedit">Edit</button>
+    <button class="saveEdit edit">Save</button>
+    <button class="cancelEdit edit">Cancel</button>
     </li>
 
 </template>
+
 
 <h4>Add a skill</h4>
 

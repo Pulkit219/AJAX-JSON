@@ -20,6 +20,8 @@ $(document).ready(function(){
 		  $skillsul.append(Mustache.render(skillTemplate, skill));
 	}
 
+
+/*  GET REQUEST */
 $.ajax({
 	type: 'GET',
 	url: 'http://rest.learncode.academy/api/pulkit/skills',
@@ -84,6 +86,53 @@ $skillsul.delegate('.remove', 'click', function(){
 });
 
 });
+
+
+
+
+$skillsul.delegate('.editskills', 'click', function(){
+	let $li = $(this).closest('li');
+	$li.find('input.name').val( $li.find('span.name').html());
+	$li.find('input.skill').val( $li.find('span.skill').html());
+	$li.addClass('edit');
+})
+
+$skillsul.delegate('.cancelEdit', 'click', function(){
+	$(this).closest('li').removeClass('edit');
+	
+});
+
+$skillsul.delegate('.saveEdit', 'click', function(){
+	let $li = $(this).closest('li');
+	let data = {
+		name: $li.find('input.name').val(),
+		skill:$li.find('input.skill').val()
+	};
+
+
+	$.ajax({
+  type: 'PUT',
+  data: data,
+  url: 'http://rest.learncode.academy/api/pulkit/skills/'+ $li.attr('data-id'),
+  success: function() {
+    $li.find('span.name').html(data.name);
+    $li.find('span.skill').html(data.skill);
+    $li.removeClass('edit');
+    console.log('Friend Updated Successfully!');
+  },
+
+ error: function(){
+  	alert("Error updating data");
+  }
+
+});
+
+	
+});
+
+
+
+
 
 
 

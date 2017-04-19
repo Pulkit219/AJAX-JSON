@@ -1,6 +1,8 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Aria, sans-serif;
+  /*font: 14px "Lucida Grande", Helvetica, Aria, sans-serif;*/
+  font-family: 'ABeeZee';
+  font-size: 22px;
 
 }
 

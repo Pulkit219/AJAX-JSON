@@ -15,11 +15,201 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 </head>
+
+
+<style type="text/css">
+	
+
+	body {
+  display: flex;
+  background-attachment: fixed;
+  background-color: #222;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+  flex-direction: column;  
+  font-family: 'Cabin', sans-serif;
+  min-height: 100vh;
+  min-width: 320px;
+  text-align: center;
+}
+main {
+  flex: 1 0 auto;
+  height: 100%;
+}
+
+#city {
+  font-size: 2em;
+  text-shadow: 2px 4px 1px #333;
+}
+
+@media screen and (min-width: 768px) {
+  #city {
+    margin-top: 10%;
+  }
+}
+#temperature {
+  font-size: 3em;
+  text-shadow: 2px 4px 2px #333;
+}
+
+#condition,
+#wind-speed {
+  background-color: #93AFC4;
+  background-color: rgba(147, 175, 196, .4);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: .2em .2em .2em #222;
+  display: inline-block;
+  font-size: 1.2em;
+  margin: .5em;
+  min-height: 6em;
+  min-width: 10em;
+  padding-top: 1em;
+  text-shadow: 1px 1px 1px #333333;
+}
+
+.wi {
+  font-size: 2em;
+}
+
+.description {
+  line-height: 2em;
+}
+
+.input-group {
+  color: #222;
+  margin: 2em auto 0 auto;
+  max-width: 25em;
+  padding: 0 1em;
+}
+
+#search-field {
+  font-size: 16px;
+}
+
+/* auto-complete menu */
+.ui-menu {
+  background-color: white;
+  list-style: none;
+  margin: 0;
+  max-width: 20em;
+  outline: none;
+  padding: 0;
+  text-align: left;
+}
+
+.ui-menu .ui-menu-item {
+  color: #222;
+  border-bottom: 2px solid #428bca;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 0;
+  overflow: hidden;
+  padding: 3px 1em 3px .4em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ui-state-focus,
+.ui-state-active {
+  background-color: #ddd;
+  margin: -1px;
+}
+
+.ui-helper-hidden-accessible { 
+  clip: rect(1px,1px,1px,1px);
+  position: absolute;
+}
+
+/* footer formatting */
+.footer {
+  background-color: #222;
+  border-top: 3px outset #444;
+  font-size: 12px;
+  font-weight: normal;
+  margin-top: 7em;
+  min-width: 320px;
+  padding: 1em 1em 0 1em;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer-logos {
+  font-size: 14px;
+  margin-top: -.5em;
+}
+
+.footer-logos a {
+  text-decoration: none;
+}
+
+.footer-logos i {
+  border: 1px solid #646464;
+  border: 1px solid rgba(100, 100, 100, .3);
+  border-radius: 25%;
+  color: #777777;
+  margin: 0 0 1em 1em;
+  padding-top: .25em;
+  text-align: center;
+  vertical-align: -1.5em;
+}
+
+.footer-logos .genericon {
+  height: 1.6em;
+  width: 1.6em;
+}
+
+.footer-logos .fa {
+  height: 1.75em;
+  width: 1.75em;
+}
+
+.attribution-logo {
+  vertical-align: text-bottom;
+  width: 90px;
+}
+
+.footer .container-fluid {
+  max-width: 768px;
+}
+
+</style>
 <body>
 
-<button class="btn btn-primary">hello</button>
+<main>
+  <div class="container">
+    <div class="row">
+      <div id="city"></div>
+      <div id="temperature"></div>
+    </div>
+    <div id="results row">
+      <div id="condition"></div>
+      <div id="wind-speed"></div>
+    </div>
+    <div class="row">
+      <a id="convert-button" class="btn btn-primary">°F / °C</a>
+    </div>
+    <div class="row">
+      <div class="input-group">
+        <input id="search-field" type="text" class="form-control" placeholder="Search for a city...">
+      </div>
+    </div>
+  </div>
+</main>
 
-
+<footer class="footer">
+  <!-- <div class="container-fluid text-center">
+    <div class="footer-text text-muted row">Copyright &copy;
+      <script>document.write(new Date().getFullYear());</script>
+      Tyler Moeller. All rights reserved. Developed for the freeCodeCamp Challenge:
+      <a href="https://www.freecodecamp.com/challenges/show-the-local-weather" target="_blank">Show the Local Weather</a>. 
+      <br>Data retrieved from
+    </div>
+  </div> -->
+</footer>
 
 
 
@@ -32,11 +222,23 @@
 
 <script type="text/javascript">
 	
-	$(document).ready(function() {
+$(document).ready(function () {
+ 
+
+ var api = 'http://api.openweathermap.org/data/2.5/weather?id=2172797&appid=831411d08b9a210b1fa3e49e383fd6e8';
+
+ $.getJSON(api, function(data)
+ {
+ 	console.log(data.coord.lon);
+ });
+});
 
 
 
-	});
+
+
+
+
 </script>
 </body>
 </html>

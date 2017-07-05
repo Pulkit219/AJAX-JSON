@@ -180,6 +180,7 @@ main {
 <body>
 
 <main>
+<p id="data"></p>
   <div class="container">
     <div class="row">
       <div id="city"></div>
@@ -223,14 +224,43 @@ main {
 <script type="text/javascript">
 	
 $(document).ready(function () {
+
+	var long;
+	var lat;
  
+if(navigator.geolocation){
+	 navigator.geolocation.getCurrentPosition(function(location)
+	 {
+	 	long= location.coords.longitude;
+	 	lat= location.coords.latitude;
+        $('#data').html("latitutude:" + lat + "<br> longitute:"+ long)
 
- var api = 'http://api.openweathermap.org/data/2.5/weather?id=2172797&appid=831411d08b9a210b1fa3e49e383fd6e8';
+         var api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
 
- $.getJSON(api, function(data)
+
+          $.getJSON(api, function(data)
  {
- 	console.log(data.coord.lon);
+		 	var weather = data.weather[0].description;
+		 	var city = data.name;
+
+		 	console.log(city);
+			console.log(weather);
+			console.log(lat);
+	 
  });
+
+	 });
+}
+
+
+
+
+
+
+
+
+
+
 });
 
 

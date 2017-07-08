@@ -225,6 +225,11 @@ main {
 	
 $(document).ready(function () {
 
+	function convert(temp)
+	{
+		return (temp)*(9/5)-459.67;
+	}
+
 	var long;
 	var lat;
  
@@ -234,6 +239,8 @@ if(navigator.geolocation){
 	 	long= location.coords.longitude;
 	 	lat= location.coords.latitude;
         $('#data').html("latitutude:" + lat + "<br> longitute:"+ long)
+
+        //API created with the help of geolocation
 
          var api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
 
@@ -245,9 +252,11 @@ if(navigator.geolocation){
 
 		 	console.log(city);
 			console.log(weather);
-			console.log(lat);
+			console.log(convert(data.main.temp));
+			console.log(api);
 	 
  });
+          
 
 	 });
 }

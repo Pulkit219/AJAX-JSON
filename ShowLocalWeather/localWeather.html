@@ -235,7 +235,8 @@ $(document).ready(function () {
 	var long;
 	var lat;
   var celTemp;
-  var celtemp1;
+  var swap =true;
+
  
 if(navigator.geolocation){
 	 navigator.geolocation.getCurrentPosition(function(location)
@@ -253,14 +254,29 @@ if(navigator.geolocation){
  {
 		 	var weather = data.weather[0].description;
 		 	var city = data.name;
+      fTemp = (convertToF(data.main.temp)).toFixed(1);
       celTemp = ((convertToF(data.main.temp) - 32)/1.8).toFixed(1);
       // celtemp1 = celTemp.toFixed(1);
 
-      $('#tempDisplay').html(convertToF(data.main.temp));
+      $('#tempDisplay').html(fTemp);
+      $('#convert-button').click(function()
+      {
+        
+        if(swap){
+          $('#tempDisplay').html(celTemp);
+          swap = false;
+        }
+        else
+        {
+          $('#tempDisplay').html(fTemp);
+          swap = true;
+        }
+      })
+
 
 		 	console.log(city);
 			console.log(weather);
-			console.log(convertToF(data.main.temp));
+			console.log(fTemp);
 			console.log(api);
       console.log(celTemp);
 	 

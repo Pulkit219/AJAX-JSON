@@ -263,12 +263,12 @@ if(navigator.geolocation){
       {
         
         if(swap){
-          $('#tempDisplay').html(celTemp);
+          $('#tempDisplay').html(celTemp+" °C");
           swap = false;
         }
         else
         {
-          $('#tempDisplay').html(fTemp);
+          $('#tempDisplay').html(fTemp+" °F");
           swap = true;
         }
       })

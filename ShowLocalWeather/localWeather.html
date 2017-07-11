@@ -192,6 +192,7 @@ main {
     </div>
     <div class="row">
       <a id="convert-button" class="btn btn-primary">°F / °C</a>
+      <span id="tempDisplay">Hello</span>
     </div>
     <div class="row">
       <div class="input-group">
@@ -225,13 +226,16 @@ main {
 	
 $(document).ready(function () {
 
-	function convert(temp)
+	function convertToF(k)
 	{
-		return (temp)*(9/5)-459.67;
+		// return (k)*(9/5)-459.67;
+    return 1.8*(k-273)+32;
 	}
 
 	var long;
 	var lat;
+  var celTemp;
+  var celtemp1;
  
 if(navigator.geolocation){
 	 navigator.geolocation.getCurrentPosition(function(location)
@@ -244,16 +248,21 @@ if(navigator.geolocation){
 
          var api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
 
-
+  
           $.getJSON(api, function(data)
  {
 		 	var weather = data.weather[0].description;
 		 	var city = data.name;
+      celTemp = ((convertToF(data.main.temp) - 32)/1.8).toFixed(1);
+      // celtemp1 = celTemp.toFixed(1);
+
+      $('#tempDisplay').html(convertToF(data.main.temp));
 
 		 	console.log(city);
 			console.log(weather);
-			console.log(convert(data.main.temp));
+			console.log(convertToF(data.main.temp));
 			console.log(api);
+      console.log(celTemp);
 	 
  });
           

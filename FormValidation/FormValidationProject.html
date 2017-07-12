@@ -24,11 +24,11 @@
 
 body {
   font-family: "Open Sans";
-  font-size: 14px;
+  font-size: 19px;
 }
 
 .container {
-  /*width: 500px;*/
+  width: 500px;
   margin: 25px auto;
 }
 
@@ -96,7 +96,7 @@ form .error {
     <label for="password">Confirm Password</label>
     <input type="password" name="cfpassword" id="cfpassword" placeholder="&#9679;&#9679;&#9679;&#9679;"/>
 
-    <button type="submit">Register</button>
+    <button type="submit">Sign up</button>
 
   </form>
 </div>
@@ -150,7 +150,8 @@ form .error {
         required: "Please provide a password",
         minlength: "Your password must be at least 4 characters long"
       },
-      email: "Please enter a valid email address"
+      email: "Please enter a valid email address",
+      cfpassword: "Password does not match"
     },
     // Make sure the form is submitted to the destination defined
     // in the "action" attribute of the form when valid

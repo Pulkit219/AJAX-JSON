@@ -22,7 +22,6 @@
 
 	body {
   display: flex;
-  background-image: url("https://static1.squarespace.com/static/57523357c2ea515ccf6c1adb/58dcea75bebafb06e997da9c/58dcece61e5b6cf38585d46b/1490873606398/mostly+cloudy.jpg");
   background-attachment: fixed;
   background-color: #222;
   background-position: center;
@@ -196,7 +195,7 @@ main {
       <div id="wind-speed"></div>
     </div>
     <div class="row">
-      <a id="convert-button" class="btn btn-primary">°F / °C</a>
+      <a id="convert-button" class="btn btn-primary">Toggle °F / °C</a>
       <button class="btn btn-warning" id="tempDisplay"></button>
       <button class="btn btn-danger" id="cityDisplay"></button>
     </div>
@@ -284,7 +283,7 @@ $(document).ready(function () {
         }
       });
 
-
+//ADJUST BACKGROUND IMAGES ACCORDING TO WEATHER
 
 
   function getWeatherDeatils(){
@@ -301,8 +300,35 @@ $(document).ready(function () {
       $('#condition').html(weather);
       $('#cityDisplay').html(data.sys.country+ "," + data.name);
       $('#tempDisplay').html(fTemp+" °F");
+
+
+if(celTemp > 30)
+{
+$("body").css("background-image", "url(http://quotesideas.com/wp-content/uploads/2015/05/hot-summer-day-background-wallpaper-hot-summer-wallpaper-.jpg)");
+
+}
+else if(celTemp >20)
+{
+$("body").css("background-image", "url(http://www.cubatiempo.com/images/photos-lrg/Clouds-sun-end-morning-north-Matanzas-city-Cuba-20161018-1080.jpg)");
+
+}
+else if(celTemp > 10)
+{
+$("body").css("background-image", "url(http://s3.amazonaws.com/btoimage/prism-thumbnails/articles/207330-spring-toronto.jpg-resize_then_crop-_frame_bg_color_FFF-h_1365-gravity_center-q_70-preserve_ratio_true-w_2048_.jpg)");
+}
+else if(celTemp >= 0)
+{
+$("body").css("background-image", "url(https://previews.123rf.com/images/ampak/ampak1310/ampak131000133/23184340-Cute-little-boy-warmly-dressed-against-the-cold-autumn-weather-sitting-on-a-park-bench-surfing-on-hi-Stock-Photo.jpg)");
+}
+else if(celTemp < 0)
+{
+$("body").css("background-image", "url(http://i.huffpost.com/gadgets/slideshows/394642/slide_394642_4831960_free.jpg)");
+}
+
       
  });
+
+
 
   }
 

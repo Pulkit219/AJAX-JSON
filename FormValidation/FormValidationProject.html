@@ -28,7 +28,7 @@ body {
 }
 
 .container {
-  width: 500px;
+  /*width: 500px;*/
   margin: 25px auto;
 }
 
@@ -91,7 +91,7 @@ form .error {
     <input type="email" name="email" id="email" placeholder="john@doe.com"/>
 
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;"/>
+    <input type="password" name="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;"/>
 
     <button type="submit">Register</button>
 
@@ -115,8 +115,42 @@ form .error {
 <script type="text/javascript">
 	
 	$(document).ready(function() {
-		console.log("done");
-
+		
+     $("form[name='registration']").validate({
+    // Specify validation rules
+    rules: {
+      // The key name on the left side is the name attribute
+      // of an input field. Validation rules are defined
+      // on the right side
+      firstname: "required",
+      lastname: "required",
+      email: {
+        required: true,
+        // Specify that email should be validated
+        // by the built-in "email" rule
+        email: true
+      },
+      password: {
+        required: true,
+        minlength: 4
+      }
+    },
+    // Specify validation error messages
+    messages: {
+      firstname: "Please enter your firstname",
+      lastname: "Please enter your lastname",
+      password: {
+        required: "Please provide a password",
+        minlength: "Your password must be at least 4 characters long"
+      },
+      email: "Please enter a valid email address"
+    },
+    // Make sure the form is submitted to the destination defined
+    // in the "action" attribute of the form when valid
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
 
 
 		

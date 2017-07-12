@@ -199,9 +199,12 @@ main {
       <button class="btn btn-danger" id="cityDisplay"></button>
     </div>
     <div class="row">
-      <div class="input-group">
-        <input id="search-field" type="text" class="form-control" placeholder="Search for a city...">
-      </div>
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" id="text" name="text" placeholder="type a city...">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
     </div>
   </div>
 </main>
@@ -230,6 +233,12 @@ main {
 	
 $(document).ready(function () {
 
+    $("form").submit(function(e){
+      e.preventDefault();
+      var text = $('#text').val();
+    console.log(text);
+});
+
 	function convertToF(k)
 	{
 		// return (k)*(9/5)-459.67;
@@ -254,16 +263,20 @@ $(document).ready(function () {
 
 
              var api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
+            getWeatherDeatils()
 
-  
-          $.getJSON(api, function(data)
+
+  function getWeatherDeatils(){
+
+
+     $.getJSON(api, function(data)
  {
       var weather = data.weather[0].description;
       var wind=  data.wind.speed;
       // var city = data.name;
       fTemp = (convertToF(data.main.temp)).toFixed(1);
       celTemp = ((convertToF(data.main.temp) - 32)/1.8).toFixed(1);
-      $('#wind-speed').html(wind);
+      $('#wind-speed').html(wind+" mph");
       $('#condition').html(weather);
       $('#cityDisplay').html(data.sys.country+ "," + data.name);
       $('#tempDisplay').html(fTemp+" °F");
@@ -286,9 +299,14 @@ $(document).ready(function () {
       
  });
 
+  }
+         
 
 
-  })
+
+  });
+
+
 	 	
         // $('#data').html("latitutude:" + lat + "<br> longitute:"+ long)
 

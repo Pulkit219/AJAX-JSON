@@ -10,9 +10,11 @@
  
 <!-- Set the page to the width of the device and set the zoon level -->
 <meta name="viewport" content="width = device-width, initial-scale = 1">
-	<title>Show local Weather</title>
+	<title>Show Weather</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<link rel="shortcut icon" type="image/png" href="https://drive.google.com/uc?id=0B5-CQuN8g8r_UjY3dkxYVERNYXc">
 
 </head>
 
@@ -210,16 +212,7 @@ main {
   </div>
 </main>
 
-<footer class="footer">
-  <!-- <div class="container-fluid text-center">
-    <div class="footer-text text-muted row">Copyright &copy;
-      <script>document.write(new Date().getFullYear());</script>
-      Tyler Moeller. All rights reserved. Developed for the freeCodeCamp Challenge:
-      <a href="https://www.freecodecamp.com/challenges/show-the-local-weather" target="_blank">Show the Local Weather</a>. 
-      <br>Data retrieved from
-    </div>
-  </div> -->
-</footer>
+
 
 
 
@@ -238,7 +231,7 @@ $(document).ready(function () {
   var lat;
   var celTemp;
   var fTemp;
-  var swap =true;
+  var swap;
   var api;
 
 
@@ -283,7 +276,7 @@ $(document).ready(function () {
         }
       });
 
-//ADJUST BACKGROUND IMAGES ACCORDING TO WEATHER
+
 
 
   function getWeatherDeatils(){
@@ -301,7 +294,7 @@ $(document).ready(function () {
       $('#cityDisplay').html(data.sys.country+ "," + data.name);
       $('#tempDisplay').html(fTemp+" °F");
 
-
+//ADJUST BACKGROUND IMAGES ACCORDING TO WEATHER
 if(celTemp > 30)
 {
 $("body").css("background-image", "url(http://quotesideas.com/wp-content/uploads/2015/05/hot-summer-day-background-wallpaper-hot-summer-wallpaper-.jpg)");
@@ -309,7 +302,7 @@ $("body").css("background-image", "url(http://quotesideas.com/wp-content/uploads
 }
 else if(celTemp >20)
 {
-$("body").css("background-image", "url(http://www.cubatiempo.com/images/photos-lrg/Clouds-sun-end-morning-north-Matanzas-city-Cuba-20161018-1080.jpg)");
+$("body").css("background-image", "url(http://www.cubatiempo.com/images/photos-lrg/Clouds-sun-end-morning-north-Matanzas-city-Cuba-20161018-1080.jpg)").fadeIn(5000);
 
 }
 else if(celTemp > 10)

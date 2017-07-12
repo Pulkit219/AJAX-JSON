@@ -233,37 +233,39 @@ main {
 	
 $(document).ready(function () {
 
+  var long;
+  var lat;
+  var celTemp;
+  var swap =true;
+  var api;
+
+
+
+//WEATHER FOR A SPECIFIC CITY 
     $("form").submit(function(e){
       e.preventDefault();
       var text = $('#text').val();
-    console.log(text);
+      $('#text').val("");
+    api = 'http://api.openweathermap.org/data/2.5/weather?q='+text+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
+    getWeatherDeatils();
+
 });
 
-	function convertToF(k)
-	{
-		// return (k)*(9/5)-459.67;
-    return 1.8*(k-273)+32;
-	}
 
-	var long;
-	var lat;
-  var celTemp;
-  var swap =true;
 
  
-// if(navigator.geolocation){
-// 	 navigator.geolocation.getCurrentPosition(function(location)
-// 	 {
-
-
+//LOCAL WEATHER  WHEN PAGE LOADS
   $.getJSON('http://ip-api.com/json',function(mainData){
 
     long= mainData.lon;
     lat= mainData.lat;
+    api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
+    getWeatherDeatils();
+
+});
 
 
-             var api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
-            getWeatherDeatils()
+
 
 
   function getWeatherDeatils(){
@@ -300,28 +302,12 @@ $(document).ready(function () {
  });
 
   }
-         
 
-
-
-  });
-
-
+    function convertToF(k)
+  {
+    return 1.8*(k-273)+32;
+  }
 	 	
-        // $('#data').html("latitutude:" + lat + "<br> longitute:"+ long)
-
-        //API created with the help of geolocation
-
-
-          
-
-// 	 });
-// }
-
-
-
-
-
 
 
 

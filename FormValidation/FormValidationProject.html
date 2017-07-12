@@ -84,14 +84,17 @@ form .error {
     <label for="firstname">First Name</label>
     <input type="text" name="firstname" id="firstname" placeholder="John"/>
 
-    <label for="lastname">Last Name</label>
-    <input type="text" name="lastname" id="lastname" placeholder="Doe"/>
+    <label for="lastname">Username</label>
+    <input type="text" name="username" id="username" placeholder="Doe123"/>
 
     <label for="email">Email</label>
     <input type="email" name="email" id="email" placeholder="john@doe.com"/>
 
     <label for="password">Password</label>
     <input type="password" name="password" id="password" placeholder="&#9679;&#9679;&#9679;&#9679;"/>
+
+    <label for="password">Confirm Password</label>
+    <input type="password" name="cfpassword" id="cfpassword" placeholder="&#9679;&#9679;&#9679;&#9679;"/>
 
     <button type="submit">Register</button>
 
@@ -123,7 +126,7 @@ form .error {
       // of an input field. Validation rules are defined
       // on the right side
       firstname: "required",
-      lastname: "required",
+      username: "required",
       email: {
         required: true,
         // Specify that email should be validated
@@ -133,12 +136,16 @@ form .error {
       password: {
         required: true,
         minlength: 4
-      }
+      },
+
+        cfpassword: { 
+          equalTo: "#password"
+                   }
     },
     // Specify validation error messages
     messages: {
       firstname: "Please enter your firstname",
-      lastname: "Please enter your lastname",
+      username: "Please enter your username",
       password: {
         required: "Please provide a password",
         minlength: "Your password must be at least 4 characters long"

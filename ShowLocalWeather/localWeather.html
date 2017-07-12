@@ -236,7 +236,7 @@ $(document).ready(function () {
   var long;
   var lat;
   var celTemp;
-  var swap =true;
+  var swap;
   var api;
 
 
@@ -269,6 +269,7 @@ $(document).ready(function () {
 
 
   function getWeatherDeatils(){
+    swap =true;
 
 
      $.getJSON(api, function(data)
@@ -288,11 +289,13 @@ $(document).ready(function () {
         if(swap){
           $('#tempDisplay').html(celTemp+" °C");
           swap = false;
+          console.log(swap)
         }
-        else
+        else 
         {
           $('#tempDisplay').html(fTemp+" °F");
           swap = true;
+          console.log(swap)
         }
       })
 

@@ -22,6 +22,7 @@
 
 	body {
   display: flex;
+  background-image: url("https://static1.squarespace.com/static/57523357c2ea515ccf6c1adb/58dcea75bebafb06e997da9c/58dcece61e5b6cf38585d46b/1490873606398/mostly+cloudy.jpg");
   background-attachment: fixed;
   background-color: #222;
   background-position: center;
@@ -176,10 +177,12 @@ main {
   max-width: 768px;
 }
 
+
 </style>
 <body>
 
 <main>
+<h1 style="color: black;">Show Local Weather</h1>
 <p id="data"></p>
   <div class="container">
     <div class="row">
@@ -192,7 +195,8 @@ main {
     </div>
     <div class="row">
       <a id="convert-button" class="btn btn-primary">°F / °C</a>
-      <span id="tempDisplay">Hello</span>
+      <button class="btn btn-warning" id="tempDisplay"></button>
+      <button class="btn btn-danger" id="cityDisplay"></button>
     </div>
     <div class="row">
       <div class="input-group">
@@ -238,12 +242,12 @@ $(document).ready(function () {
   var swap =true;
 
  
-if(navigator.geolocation){
-	 navigator.geolocation.getCurrentPosition(function(location)
-	 {
+// if(navigator.geolocation){
+// 	 navigator.geolocation.getCurrentPosition(function(location)
+// 	 {
 	 	long= location.coords.longitude;
 	 	lat= location.coords.latitude;
-        $('#data').html("latitutude:" + lat + "<br> longitute:"+ long)
+        // $('#data').html("latitutude:" + lat + "<br> longitute:"+ long)
 
         //API created with the help of geolocation
 
@@ -253,12 +257,14 @@ if(navigator.geolocation){
           $.getJSON(api, function(data)
  {
 		 	var weather = data.weather[0].description;
-		 	var city = data.name;
+      var wind=  data.wind.speed;
+		 	// var city = data.name;
       fTemp = (convertToF(data.main.temp)).toFixed(1);
       celTemp = ((convertToF(data.main.temp) - 32)/1.8).toFixed(1);
-      // celtemp1 = celTemp.toFixed(1);
-
-      $('#tempDisplay').html(fTemp);
+      $('#wind-speed').html(wind);
+      $('#condition').html(weather);
+      $('#cityDisplay').html(data.sys.country+ "," + data.name);
+      $('#tempDisplay').html(fTemp+" °F");
       $('#convert-button').click(function()
       {
         
@@ -274,17 +280,13 @@ if(navigator.geolocation){
       })
 
 
-		 	console.log(city);
-			console.log(weather);
-			console.log(fTemp);
 			console.log(api);
-      console.log(celTemp);
-	 
+      
  });
           
 
-	 });
-}
+// 	 });
+// }
 
 
 

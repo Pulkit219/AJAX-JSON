@@ -245,20 +245,22 @@ $(document).ready(function () {
 // if(navigator.geolocation){
 // 	 navigator.geolocation.getCurrentPosition(function(location)
 // 	 {
-	 	long= location.coords.longitude;
-	 	lat= location.coords.latitude;
-        // $('#data').html("latitutude:" + lat + "<br> longitute:"+ long)
 
-        //API created with the help of geolocation
 
-         var api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
+  $.getJSON('http://ip-api.com/json',function(mainData){
+
+    long= mainData.lon;
+    lat= mainData.lat;
+
+
+             var api = 'http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+long+'&appid=831411d08b9a210b1fa3e49e383fd6e8';
 
   
           $.getJSON(api, function(data)
  {
-		 	var weather = data.weather[0].description;
+      var weather = data.weather[0].description;
       var wind=  data.wind.speed;
-		 	// var city = data.name;
+      // var city = data.name;
       fTemp = (convertToF(data.main.temp)).toFixed(1);
       celTemp = ((convertToF(data.main.temp) - 32)/1.8).toFixed(1);
       $('#wind-speed').html(wind);
@@ -280,9 +282,19 @@ $(document).ready(function () {
       })
 
 
-			console.log(api);
+      console.log(api);
       
  });
+
+
+
+  })
+	 	
+        // $('#data').html("latitutude:" + lat + "<br> longitute:"+ long)
+
+        //API created with the help of geolocation
+
+
           
 
 // 	 });

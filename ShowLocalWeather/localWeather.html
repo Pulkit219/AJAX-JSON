@@ -69,6 +69,7 @@ main {
   min-width: 10em;
   padding-top: 1em;
   text-shadow: 1px 1px 1px #333333;
+  text-transform: capitalize;
 }
 
 .wi {
@@ -178,11 +179,12 @@ main {
 }
 
 
+
 </style>
 <body>
 
 <main>
-<h1 style="color: black;">Show Local Weather</h1>
+<h1 style="color: black;">Show Weather</h1>
 <p id="data"></p>
   <div class="container">
     <div class="row">
@@ -236,7 +238,8 @@ $(document).ready(function () {
   var long;
   var lat;
   var celTemp;
-  var swap;
+  var fTemp;
+  var swap =true;
   var api;
 
 
@@ -264,13 +267,28 @@ $(document).ready(function () {
 
 });
 
+//TOGGLE F/ C  FUNCTION
+   $('#convert-button').click(function()
+      {
+        
+        if(swap){
+          $('#tempDisplay').html(celTemp+" °C");
+          swap = false;
+          
+        }
+        else 
+        {
+          $('#tempDisplay').html(fTemp+" °F");
+          swap = true;
+         
+        }
+      });
 
 
 
 
   function getWeatherDeatils(){
-    swap =true;
-
+   
 
      $.getJSON(api, function(data)
  {
@@ -283,24 +301,6 @@ $(document).ready(function () {
       $('#condition').html(weather);
       $('#cityDisplay').html(data.sys.country+ "," + data.name);
       $('#tempDisplay').html(fTemp+" °F");
-      $('#convert-button').click(function()
-      {
-        
-        if(swap){
-          $('#tempDisplay').html(celTemp+" °C");
-          swap = false;
-          console.log(swap)
-        }
-        else 
-        {
-          $('#tempDisplay').html(fTemp+" °F");
-          swap = true;
-          console.log(swap)
-        }
-      })
-
-
-      console.log(api);
       
  });
 

@@ -44,7 +44,7 @@ form label,
 form input,
 form button {
   border: 0;
-  margin-bottom: 3px;
+  margin-bottom: 2%;
   display: block;
   width: 100%;
 }
@@ -69,6 +69,16 @@ form button {
 form .error {
   color: #ff0000;
 }
+.btn-warning
+{
+  font-size: 18px;
+
+}
+#alreadyTaken
+{
+  color: red;
+}
+
 </style>
 
 
@@ -86,6 +96,7 @@ form .error {
 
     <label for="lastname">Username</label>
     <input type="text" name="username" id="username" placeholder="Doe123"/>
+    <span id="alreadyTaken"></span>
 
     <label for="email">Email</label>
     <input type="email" name="email" id="email" placeholder="john@doe.com"/>
@@ -96,7 +107,7 @@ form .error {
     <label for="password">Confirm Password</label>
     <input type="password" name="cfpassword" id="cfpassword" placeholder="&#9679;&#9679;&#9679;&#9679;"/>
 
-    <button type="submit">Sign up</button>
+    <button class="btn btn-warning" type="submit">Sign up</button>
 
   </form>
 </div>
@@ -118,13 +129,105 @@ form .error {
 <script type="text/javascript">
 	
 	$(document).ready(function() {
+
+    var timer = null;
+    var un;
+    
+
+        $('#username').keydown(function(){
+               clearTimeout(timer); 
+               timer = setTimeout(getUsername, 2100)
+        });
+
+        function getUsername()
+        { 
+              un = ($('#username').val()).toLowerCase();
+              
+               $.ajax({
+                  type: 'GET',
+                  url: 'http://rest.learncode.academy/api/pulkit/skills',
+                  success: function(skills){
+                    $.each(skills, function(i , skill){
+                    
+                       // if(toggle){
+                         if(un === (skill.name).toLowerCase())
+                        {
+                          $('#alreadyTaken').html("<b>Username already taken</b>");
+                        // }
+                        // toggle = false;
+                       }
+                       else if(un !== (skill.name).toLowerCase())
+                        {
+                          $('#alreadyTaken').empty();
+                        }
+                        
+
+                    });
+
+                  },
+
+                  error: function(){
+                    alert(" Request unsuccessful");
+                  }
+
+               });
+
+
+        };
+  
+       // $.validator.addMethod(
+       //  "uniqueUserName", 
+       //  function(value, element) {
+       //      $.ajax({
+       //          type: "GET",
+       //          url: 'http://rest.learncode.academy/api/pulkit/skills',
+       //          success: function(skills)
+       //          {
+
+       //              $.each(skills, function(i , skill){
+                    
+                       
+       //                  if((value).toLowerCase() === (skill.name).toLowerCase())
+       //                  {
+                          
+       //                  }
+                        
+
+       //              });
+                    
+       //          }
+       //       });
+
+             // $.getJSON('http://rest.learncode.academy/api/pulkit/skills', function(data)
+             //  {
+             //     $.each(data, function(i , skill){
+                    
+                       
+             //            if((value).toLowerCase() !== (skill.name).toLowerCase())
+             //           {}
+                        
+
+             //        });
+             //  });
+            
+    //     },
+    //     "Username is Already Taken"
+    // );
+
+
 		
      $("form[name='registration']").validate({
     //  validation rules
     rules: {
       
       firstname: "required",
-      username: "required",
+
+      username: {
+        required: true,
+        minlength:3,
+       // uniqueUserName:true
+
+    },
       email: {
         required: true,
         email: true
@@ -141,13 +244,16 @@ form .error {
     //  validation error messages
     messages: {
       firstname: "Please enter your firstname",
-      username: "Please enter your username",
+      username:{
+        required: "Please enter username",
+        minlength:"Must be at least 3 characters long"
+      } ,
       password: {
         required: "Please provide a password",
         minlength: "Your password must be at least 4 characters long"
       },
       email: "Please enter a valid email address",
-      cfpassword: "Passwords do not match"
+      cfpassword: "Please enter the same password as above"
     },
     submitHandler: function(form) {
       form.submit();

@@ -10,7 +10,7 @@
  
 <!-- Set the page to the width of the device and set the zoon level -->
 <meta name="viewport" content="width = device-width, initial-scale = 1">
-	<title>Structure</title>
+	<title>Forrm Validation with jQuery</title>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -24,7 +24,7 @@
 
 body {
   font-family: "Open Sans";
-  font-size: 19px;
+  font-size: 17px;
 }
 
 .container {
@@ -89,7 +89,7 @@ form .error {
 
 <div class="container">
   <h2>Registration</h2>
-  <form action="" name="registration">
+  <form action="/action_page.php" name="registration" method="get" target="_blank">
 
     <label for="firstname">First Name</label>
     <input type="text" name="firstname" id="firstname" placeholder="John"/>
@@ -149,12 +149,13 @@ form .error {
                   success: function(skills){
                     $.each(skills, function(i , skill){
                     
-                       // if(toggle){
+                       
                          if(un === (skill.name).toLowerCase())
                         {
                           $('#alreadyTaken').html("<b>Username already taken</b>");
-                        // }
-                        // toggle = false;
+                          $('#username').val("");
+
+                      
                        }
                        else if(un !== (skill.name).toLowerCase())
                         {

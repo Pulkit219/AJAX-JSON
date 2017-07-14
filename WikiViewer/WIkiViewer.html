@@ -22,7 +22,10 @@
 </head>
 <body>
 
-<div id="tesing"></div>
+<div class="container">
+  <h1>search here</h1>
+  <input type="text" name="search" id="search" placeholder="search here...">
+</div>
 
 
 
@@ -38,18 +41,20 @@
 	
 	$(document).ready(function() {
 
-$.ajax( {
-    url: 'https://en.wikipedia.org/w/api.php?action=query&titles=Main%20Page&prop=revisions&rvprop=content&format=json',
-    data: queryData,
-    dataType: 'json',
-    type: 'GET',
-    headers: { 'Api-User-Agent': 'Example/1.0' },
-    success: function(data) {
-       // do something with data
+// $.ajax( {
+//     url: 'https://en.wikipedia.org/w/api.php?action=query&titles=san_francisco&prop=revisions&rvprop=content',
+//     dataType: 'json',
+//     type: 'GET',
+    
+//     success: function(data) {
+//        // do something with data
 
-       console.log(data);
-    }
-} );
+//        console.log(data);
+//     },
+//     error:function(){
+//       console.log("failed");
+//     }
+// } );
 		
 	});
 </script>

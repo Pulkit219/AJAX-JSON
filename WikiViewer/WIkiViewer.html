@@ -65,6 +65,11 @@
       
       var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
       console.log(url);
+
+      $.getJSON(url, function(data){
+         console.log(data);
+
+      })
     })
 	});
 </script>

@@ -25,8 +25,10 @@
 <div class="container">
   <h1>search here</h1>
   <input type="text" name="search" id="search" placeholder="search here...">
-  <button id="searchNow" >Search</button>
-  <div id="result"></div>
+  <button id="searchNow" class="btn btn-primary">Search</button>
+  <div id="result">
+    <ul class="list-group"></ul>
+  </div>
 </div>
 
 
@@ -66,8 +68,31 @@
       var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
       console.log(url);
 
-      $.getJSON(url, function(data){
-         console.log(data);
+      // $.getJSON(url, function(data){
+      //    console.log(data[2][0]);
+
+      // });
+
+      $.ajax({
+        type: 'GET',
+        url:url,
+        async:false,
+        dataType:'JSON',
+        success:function(data){
+
+           $('#result').html("")
+          console.log(data);
+          for (var i =0; i < data[1].length; i++) {
+            $('#result').prepend(
+              "<li class='list-group-item' ><a target='_blank' href="+ data[3][i] + ">"+ data[1][i] +"</a><p>"+data[2][i]+"</p></li>"
+
+
+              )
+          }
+        },
+        error:function(){
+          alert("REQUEST failed");
+        }
 
       })
     })

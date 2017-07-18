@@ -69,6 +69,46 @@
 // } );
 
 
+$( "#search" ).on( "keydown", function(e) {
+     console.log(e.which)
+     if(e.which === 13)
+      {   var searchResult = $('#search').val();
+      
+      var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
+      console.log(url);
+
+      // $.getJSON(url, function(data){
+      //    console.log(data[2][0]);
+
+      // });
+
+      $.ajax({
+        type: 'GET',
+        url:url,
+        async:false,
+        dataType:'JSON',
+        success:function(data){
+
+           $('#result').html("")
+          console.log(data);
+          for (var i =0; i < data[1].length; i++) {
+            $('#result').prepend(
+              "<li class='list-group-item' ><a target='_blank' href="+ data[3][i] + ">"+ data[1][i] +"</a><p>"+data[2][i]+"</p></li>"
+
+
+              )
+          }
+        },
+        error:function(){
+          alert("REQUEST failed");
+        }
+
+      })
+
+      };
+});
+
+
 		$('#searchNow').on('click', function(){
 
       var searchResult = $('#search').val();
@@ -104,6 +144,45 @@
 
       })
     })
+
+    function getData()
+    {
+
+          var searchResult = $('#search').val();
+      
+      var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
+      console.log(url);
+
+      // $.getJSON(url, function(data){
+      //    console.log(data[2][0]);
+
+      // });
+
+      $.ajax({
+        type: 'GET',
+        url:url,
+        async:false,
+        dataType:'JSON',
+        success:function(data){
+
+           $('#result').html("")
+          console.log(data);
+          for (var i =0; i < data[1].length; i++) {
+            $('#result').prepend(
+              "<li class='list-group-item' ><a target='_blank' href="+ data[3][i] + ">"+ data[1][i] +"</a><p>"+data[2][i]+"</p></li>"
+
+
+              )
+          }
+        },
+        error:function(){
+          alert("REQUEST failed");
+        }
+
+      })
+
+    }
+
 	});
 </script>
 </body>

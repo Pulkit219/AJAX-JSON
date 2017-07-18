@@ -25,6 +25,36 @@
     margin: 2%;
     padding:2%;
   }
+
+    li {
+  opacity: 0;
+  -webkit-animation: fadeIn 0.9s 1;
+  animation: fadeIn 0.9s 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+
+
+/* Animation steps */
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 1.0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.0;
+  }
+  100% {
+    opacity: 1.0;
+  }
+
 </style>
 
 </head>

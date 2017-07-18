@@ -53,57 +53,44 @@
 	
 	$(document).ready(function() {
 
-// $.ajax( {
-//     url: 'https://en.wikipedia.org/w/api.php?action=query&titles=san_francisco&prop=revisions&rvprop=content',
-//     dataType: 'json',
-//     type: 'GET',
-    
-//     success: function(data) {
-//        // do something with data
-
-//        console.log(data);
-//     },
-//     error:function(){
-//       console.log("failed");
-//     }
-// } );
+    var display = $('#result');
 
 
 $( "#search" ).on( "keydown", function(e) {
-     console.log(e.which)
+     
      if(e.which === 13)
-      {   var searchResult = $('#search').val();
+      {  
+
+
+        getData();
+
+      //  var searchResult = $('#search').val();
       
-      var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
-      console.log(url);
+      // var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
+      // console.log(url);
 
-      // $.getJSON(url, function(data){
-      //    console.log(data[2][0]);
+      // $.ajax({
+      //   type: 'GET',
+      //   url:url,
+      //   async:false,
+      //   dataType:'JSON',
+      //   success:function(data){
 
-      // });
-
-      $.ajax({
-        type: 'GET',
-        url:url,
-        async:false,
-        dataType:'JSON',
-        success:function(data){
-
-           $('#result').html("")
-          console.log(data);
-          for (var i =0; i < data[1].length; i++) {
-            $('#result').prepend(
-              "<li class='list-group-item' ><a target='_blank' href="+ data[3][i] + ">"+ data[1][i] +"</a><p>"+data[2][i]+"</p></li>"
+      //      $('#result').html("")
+      //     console.log(data);
+      //     for (var i =0; i < data[1].length; i++) {
+      //       $('#result').prepend(
+      //         "<li class='list-group-item' ><a target='_blank' href="+ data[3][i] + ">"+ data[1][i] +"</a><p>"+data[2][i]+"</p></li>"
 
 
-              )
-          }
-        },
-        error:function(){
-          alert("REQUEST failed");
-        }
+      //         )
+      //     }
+      //   },
+      //   error:function(){
+      //     alert("REQUEST failed");
+      //   }
 
-      })
+      // })
 
       };
 });
@@ -111,38 +98,36 @@ $( "#search" ).on( "keydown", function(e) {
 
 		$('#searchNow').on('click', function(){
 
-      var searchResult = $('#search').val();
+      getData();
+
+      // var searchResult = $('#search').val();
       
-      var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
-      console.log(url);
-
-      // $.getJSON(url, function(data){
-      //    console.log(data[2][0]);
-
-      // });
-
-      $.ajax({
-        type: 'GET',
-        url:url,
-        async:false,
-        dataType:'JSON',
-        success:function(data){
-
-           $('#result').html("")
-          console.log(data);
-          for (var i =0; i < data[1].length; i++) {
-            $('#result').prepend(
-              "<li class='list-group-item' ><a target='_blank' href="+ data[3][i] + ">"+ data[1][i] +"</a><p>"+data[2][i]+"</p></li>"
+      // var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
+      // console.log(url);
 
 
-              )
-          }
-        },
-        error:function(){
-          alert("REQUEST failed");
-        }
+      // $.ajax({
+      //   type: 'GET',
+      //   url:url,
+      //   async:false,
+      //   dataType:'JSON',
+      //   success:function(data){
 
-      })
+      //      $('#result').html("")
+      //     console.log(data);
+      //     for (var i =0; i < data[1].length; i++) {
+      //       $('#result').prepend(
+      //         "<li class='list-group-item' ><a target='_blank' href="+ data[3][i] + ">"+ data[1][i] +"</a><p>"+data[2][i]+"</p></li>"
+
+
+      //         )
+      //     }
+      //   },
+      //   error:function(){
+      //     alert("REQUEST failed");
+      //   }
+
+      // })
     })
 
     function getData()
@@ -153,10 +138,6 @@ $( "#search" ).on( "keydown", function(e) {
       var url = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' +searchResult+'&format=json&callback=?';
       console.log(url);
 
-      // $.getJSON(url, function(data){
-      //    console.log(data[2][0]);
-
-      // });
 
       $.ajax({
         type: 'GET',
@@ -165,10 +146,10 @@ $( "#search" ).on( "keydown", function(e) {
         dataType:'JSON',
         success:function(data){
 
-           $('#result').html("")
+           display.html("")
           console.log(data);
           for (var i =0; i < data[1].length; i++) {
-            $('#result').prepend(
+            display.prepend(
               "<li class='list-group-item' ><a target='_blank' href="+ data[3][i] + ">"+ data[1][i] +"</a><p>"+data[2][i]+"</p></li>"
 
 

@@ -33,7 +33,7 @@
 		   <div class="col-md-4" >DIsplay</div>	
 		   <div class="col-md-4" >Status</div>		
 		</div>
-	
+
 	</div>
 
 </div>
@@ -51,11 +51,42 @@
 <script type="text/javascript">
 	
 	$(document).ready(function() {
-		
+
+		var url = 'https://api.twitch.tv/kraken/streams/freecodecamp'
+
+	  $.ajax({
+		        type: 'GET',
+		        url:url,
+		        async:false,
+		        dataType:'JSON',
+		        headers:{
+		        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas',
+		        	'Accept': 'application/vnd.twitchtv.v5+json' 
+		        },
+		        success:function(data){
+		        	console.log(data);
+
+		        	if(data.stream === null)
+
+		        	{
+		        		$('#fccStatus').html('Free code camp is offline!');
+		        	}
+		        	else
+		        	{
+		        		$('#fccStatus').html('Free code camp is online!');
+		        	}
+		        	
+
+		        	
+		        
+		        },
+		        error:function(){
+		          alert("REQUEST failed");
+		        }
 
 
 
-		
+      }) //end of ajax
 	});
 </script>
 </body>

@@ -19,12 +19,26 @@
 
 <link rel="shortcut icon" type="image/png" href="https://drive.google.com/uc?id=0B5-CQuN8g8r_UjY3dkxYVERNYXc">
 
+<link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet"> 
+
 <style type="text/css">
+
+
+li>a
+{
+  font-size: 170%;
+}
+a>p
+{
+  font-size: 150%;
+}
 
 body
 {
   background-image: url("http://www.innovaticias.com/userfiles/extra/TCKU_wikipedia.jpg");
   background-repeat: no-repeat;
+
+font-family: 'Zilla Slab', serif;
 }
   #result
   {
@@ -205,7 +219,7 @@ $( "#search" ).on( "keydown", function(e) {
         async:false,
         dataType:'JSON',
         success:function(data){
-
+          $('#search').val('');
            display.html("")
           // console.log(data);
           for (var i =0; i < data[1].length; i++) {

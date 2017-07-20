@@ -2,6 +2,20 @@
 <html>
 <head>
 
+<style type="text/css">
+	
+	img
+	{
+		    width: 100px;
+    border-radius: 15%;
+	}
+
+	div.row
+	{
+		padding-top: 2%;
+	}
+</style>
+
 
 <meta charset="UTF-8">
  
@@ -30,7 +44,7 @@
 		
 		<div class="row">
 		   <div class="col-md-4" >Logo</div>
-		   <div class="col-md-4" >DIsplay</div>	
+		   <div class="col-md-4" >Channel</div>	
 		   <div class="col-md-4" >Status</div>		
 		</div>
 
@@ -110,7 +124,7 @@
 		        		
 		        		followersArray.push(data.follows[i].channel.display_name);
 		        	}
-		        	followersArray.push('comster404','brunofin','ESL_SC2');
+		        	followersArray.push('quakechampions','brunofin','ESL_SC2');
 		        	console.log(followersArray);
 		        	for (var i =0; i < followersArray.length; i++) {
 		        		
@@ -129,12 +143,12 @@
 						        success:function(data3){
 						        	if(data3.stream)
 						        	{
-						        		$('#followerInfo').prepend("<div class='row'><div class='col-md-4' >"+data3.stream.channel.logo+"</div><div class='col-md-4' >"+data3.stream.channel.display_name+"</div><div class='col-md-4' >"+data3.stream.channel.status+"</div></div>")
-// data3.stream.channel.logo
+						        		$('#followerInfo').prepend("<div class='row'><div class='col-md-4'><img src='"+data3.stream.channel.logo+"'></div><div class='col-md-4' >"+data3.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='https://www.twitch.tv/"+followersArray[i]+"'>"+data3.stream.channel.status+"</a></div></div>")
+
 						        	}
 						        	else
 						        	{
-						        		$('#followerInfo').prepend("<div class='row'><div class='col-md-4' >Not available</div><div class='col-md-4' >"+followersArray[i]+"</div><div class='col-md-4' >Not available</div></div>")
+						        		$('#followerInfo').prepend("<div class='row'><div class='col-md-4'><img src='http://www.journeybuds.com/contents/Images/NoImage.jpg'></div><div class='col-md-4' >"+followersArray[i]+"</div><div class='col-md-4' ><img src='http://vignette3.wikia.nocookie.net/canadians-vs-vampires/images/a/a4/Not_available_icon.jpg/revision/latest?cb=20130403054528'></div></div>")
 						        	}
 						        
 						        },

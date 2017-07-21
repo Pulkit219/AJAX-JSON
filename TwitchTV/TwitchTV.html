@@ -3,6 +3,12 @@
 <head>
 
 <style type="text/css">
+
+body{
+	/*background-image: url('https://i.ytimg.com/vi/8gD_9WPPFb4/maxresdefault.jpg');
+	background-repeat: no-repeat;*/
+	font-family: 'Lobster', cursive;
+}
 	
 	img
 	{
@@ -13,6 +19,7 @@
 	div.row
 	{
 		padding-top: 2%;
+		border:5px red solid;
 	}
 
 	.display{
@@ -21,6 +28,12 @@
 	.hidden
 	{
 		display: none;
+	}
+	#header
+	{
+		background: rgba(0,0,0,.5);
+		border:5px red solid;
+		border-radius: 25px;
 	}
 </style>
 
@@ -39,6 +52,9 @@
 
 <link rel="shortcut icon" type="image/png" href="https://drive.google.com/uc?id=0B5-CQuN8g8r_UjY3dkxYVERNYXc">
 
+
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+
 </head>
 <body>
 
@@ -51,17 +67,16 @@
 		</a>
 		<button id="offline" class="btn btn-primary">Online!</button>
 		<button id="offline" class="btn btn-danger">Offline!</button>
-		
-		<div class="row">
+	</div>
+	<div class="row">
+		<h3>
 		   <div class="col-md-4" >Logo</div>
 		   <div class="col-md-4" >Channel</div>	
-		   <div class="col-md-4" >Status</div>		
+		   <div class="col-md-4" >Status</div>
+		 </h3>		
 		</div>
-
-		<div id="followerInfo">
-			
-		</div>
-
+	<div class="text-center" id="followerInfo">
+		
 	</div>
 
 </div>

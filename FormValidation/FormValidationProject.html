@@ -146,32 +146,36 @@ form .error {
               
                $.ajax({
                   type: 'GET',
-                  
                   dataType:'JSON',
-                  url: 'http://rest.learncode.academy/api/pulkit/skills',
-                  success: function(skills){
-                    $.each(skills, function(i , skill){
+                   headers:{
+              'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
+              // 'Accept': 'application/vnd.twitchtv.v5+json' 
+            },
+                  url: 'https://api.twitch.tv/kraken/users/'+un,
+                  success: function(data){
+                    
                     
                        
-                         if(un === (skill.name).toLowerCase())
+                         if(un === (data.name).toLowerCase())
                         {
                           $('#alreadyTaken').html("<b>Username already taken</b>");
                           $('#username').val("");
-console.log("test");
+
                       
                        }
-                       else if(un !== (skill.name).toLowerCase())
+                       else if(un !== (data.name).toLowerCase())
                         {
                           $('#alreadyTaken').empty();
                         }
                         
 
-                    });
+                    
 
                   },
 
                   error: function(){
-                    alert(" Request unsuccessful");
+                    console.log(" Request unsuccessful");
+                    $('#alreadyTaken').empty();
                   }
 
                });

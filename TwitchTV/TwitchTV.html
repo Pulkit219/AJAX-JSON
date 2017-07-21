@@ -14,6 +14,14 @@
 	{
 		padding-top: 2%;
 	}
+
+	.display{
+		display: block;
+	}
+	.hidden
+	{
+		display: none;
+	}
 </style>
 
 
@@ -41,6 +49,8 @@
 		<a  target="_blank" href="https://www.twitch.tv/freecodecamp">
 			<h4 id="fccStatus"></h4>
 		</a>
+		<button id="offline" class="btn btn-primary">Online!</button>
+		<button id="offline" class="btn btn-danger">Offline!</button>
 		
 		<div class="row">
 		   <div class="col-md-4" >Logo</div>
@@ -70,102 +80,125 @@
 	
 	$(document).ready(function() {
 
+		// $('#offline').on('click', function(){
+		// 	$('div.display').removeClass( "display" ).addClass( "hidden" );	
+		// 	$('div.hidden').removeClass( "hidden" ).addClass( "display" );	
+		// })
+
+
 		var url = 'https://api.twitch.tv/kraken/streams/freecodecamp'
-		var url2 = 'https://api.twitch.tv/kraken/users/freecodecamp/follows/channels/'
+		var channelsArray=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", 'brunofin', 'comster404' ];
+	
 
-		var followersArray=[];
+	  // $.ajax({
+		 //        type: 'GET',
+		 //        url:url,
+		 //        async:false,
+		 //        dataType:'JSON',
+		 //        headers:{
+		 //        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
+		 //        	// 'Accept': 'application/vnd.twitchtv.v5+json' 
+		 //        },
+		 //        success:function(data){
+		 //        	console.log(data);
 
-	  $.ajax({
-		        type: 'GET',
-		        url:url,
-		        async:false,
-		        dataType:'JSON',
-		        headers:{
-		        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
-		        	// 'Accept': 'application/vnd.twitchtv.v5+json' 
-		        },
-		        success:function(data){
-		        	console.log(data);
+		 //        	if(data.stream===null)
 
-		        	if(data.stream===null)
-
-		        	{
-		        		$('#fccStatus').html('Free code camp is offline!');
-		        	}
-		        	else
-		        	{
-		        		$('#fccStatus').html('Free code camp is online!');
-		        	}
+		 //        	{
+		 //        		$('#fccStatus').html('Free code camp is offline!');
+		 //        	}
+		 //        	else
+		 //        	{
+		 //        		$('#fccStatus').html('Free code camp is online!');
+		 //        	}
 		        	
 
 		        	
 		        
-		        },
-		        error:function(){
-		          alert("REQUEST failed");
-		        }
+		 //        },
+		 //        error:function(){
+		 //          alert("REQUEST failed");
+		 //        }
 
 
 
-      }) //end of ajax for FCC status
+   //    }) //end of ajax for FCC status
+    for (var i =0; i < channelsArray.length; i++)
+    {
 
-      $.ajax({
+    	   $.ajax({
 		        type: 'GET',
-		        url:url2,
-		        async:false,
+		        url:'https://api.twitch.tv/kraken/channels/'+channelsArray[i],
+		        
 		        dataType:'JSON',
 		        headers:{
 		        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
 		        	// 'Accept': 'application/vnd.twitchtv.v5+json' 
 		        },
-		        success:function(data){
-		        	// console.log(data);
-		        	for (var i =0; i < data.follows.length; i++) {
+		        success:function(data2){
+		        
+		        // 	console.log(followersArray);
+		        // 	for (var i =0; i < followersArray.length; i++) {
 		        		
-		        		followersArray.push(data.follows[i].channel.display_name);
-		        	}
-		        	followersArray.push('quakechampions','brunofin','ESL_SC2');
-		        	console.log(followersArray);
-		        	for (var i =0; i < followersArray.length; i++) {
-		        		
-		        		let url = "https://api.twitch.tv/kraken/streams/"+followersArray[i];
-		        		// console.log(url);
+		        // 		let url = "https://api.twitch.tv/kraken/streams/"+followersArray[i];
+		        // 		// console.log(url);
 
-		        		$.ajax({
-						        type: 'GET',
-						        url:url,
-						        async:false,
-						        dataType:'JSON',
-						        headers:{
-						        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
-						        	// 'Accept': 'application/vnd.twitchtv.v5+json' 
-						        },
-						        success:function(data3){
-						        	if(data3.stream)
-						        	{
-						        		$('#followerInfo').prepend("<div class='row'><div class='col-md-4'><img src='"+data3.stream.channel.logo+"'></div><div class='col-md-4' >"+data3.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='https://www.twitch.tv/"+followersArray[i]+"'>"+data3.stream.channel.status+"</a></div></div>")
+		        // 		$.ajax({
+						    //     type: 'GET',
+						    //     url:url,
+						    //     async:false,
+						    //     dataType:'JSON',
+						    //     headers:{
+						    //     	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
+						    //     	// 'Accept': 'application/vnd.twitchtv.v5+json' 
+						    //     },
+						    //     success:function(data3){
 
-						        	}
-						        	else
-						        	{
-						        		$('#followerInfo').prepend("<div class='row'><div class='col-md-4'><img src='http://www.journeybuds.com/contents/Images/NoImage.jpg'></div><div class='col-md-4' >"+followersArray[i]+"</div><div class='col-md-4' ><img src='http://vignette3.wikia.nocookie.net/canadians-vs-vampires/images/a/a4/Not_available_icon.jpg/revision/latest?cb=20130403054528'></div></div>")
-						        	}
+						    //     	if(data3.stream)
+						    //     	{
+						    //     		$('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='"+data3.stream.channel.logo+"'></div><div class='col-md-4' >"+data3.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='https://www.twitch.tv/"+followersArray[i]+"'>"+data3.stream.channel.status+"</a></div></div>")
+
+						    //     	}
+						    //     	else
+						    //     	{
+						    //     		$('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='http://www.journeybuds.com/contents/Images/NoImage.jpg'></div><div class='col-md-4' >"+followersArray[i]+"</div><div class='col-md-4' ><img src='http://vignette3.wikia.nocookie.net/canadians-vs-vampires/images/a/a4/Not_available_icon.jpg/revision/latest?cb=20130403054528'></div></div>")
+						    //     	}
+
+
 						        
-						        },
-						        error:function(){
-						          alert("REQUEST failed");
-						        }
-						    })
-		        	}
+						    //     },
+						    //     error:function(){
+						    //       alert("REQUEST failed");
+						    //     }
+						    // })
+		        // 	}
+				        var displayName = data2.name;
+		        		var status = data2.status;
+		        		var logo = data2.logo;
+		        		var channelUrl = data2.url;
+
+		        		if(data2.logo === null)
+		        		{
+		        			logo = 'https://www.qoovee.com/static/img/noImage.707313a1e614.png';
+		        		}
+
+		        		$('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+displayName+"</div><div class='col-md-4' ><a target='_blank' href='"+channelUrl+"'>"+status+"</a></div></div>")
+
 
 		        },
-		        error:function(){
-		          alert("REQUEST failed");
+		        error:function(data3){
+		          var status = data3.status;
+		          var logo = 'https://www.qoovee.com/static/img/noImage.707313a1e614.png';
+
+		          $('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+"</a></div></div>")
 		        }
 
 
 
       }) //end of ajax for FCC follow channels 
+
+    }
+   
 
 
 

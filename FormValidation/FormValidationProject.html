@@ -136,15 +136,18 @@ form .error {
 
         $('#username').keydown(function(){
                clearTimeout(timer); 
-               timer = setTimeout(getUsername, 500)
+               timer = setTimeout(getUsername, 700)
         });
 
         function getUsername()
         { 
+
               un = ($('#username').val()).toLowerCase();
               
                $.ajax({
                   type: 'GET',
+                  
+                  dataType:'JSON',
                   url: 'http://rest.learncode.academy/api/pulkit/skills',
                   success: function(skills){
                     $.each(skills, function(i , skill){
@@ -154,7 +157,7 @@ form .error {
                         {
                           $('#alreadyTaken').html("<b>Username already taken</b>");
                           $('#username').val("");
-
+console.log("test");
                       
                        }
                        else if(un !== (skill.name).toLowerCase())

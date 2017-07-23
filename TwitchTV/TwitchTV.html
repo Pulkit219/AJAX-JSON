@@ -106,50 +106,15 @@ body{
 		$("#onlineNow").css("display", "none");
 		$("#OfflineNow").css("display", "none");
 
-		// $('#offline').on('click', function(){
-		// 	$('div.display').removeClass( "display" ).addClass( "hidden" );	
-		// 	$('div.hidden').removeClass( "hidden" ).addClass( "display" );	
-		// })
+
 		var online=true;
+		var offline=true;
 
 
 		var url = 'https://api.twitch.tv/kraken/streams/freecodecamp'
 		var channelsArray=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", 'brunofin', 'comster404' ];
 	
 
-	  // $.ajax({
-		 //        type: 'GET',
-		 //        url:url,
-		 //        async:false,
-		 //        dataType:'JSON',
-		 //        headers:{
-		 //        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
-		 //        	// 'Accept': 'application/vnd.twitchtv.v5+json' 
-		 //        },
-		 //        success:function(data){
-		 //        	console.log(data);
-
-		 //        	if(data.stream===null)
-
-		 //        	{
-		 //        		$('#fccStatus').html('Free code camp is offline!');
-		 //        	}
-		 //        	else
-		 //        	{
-		 //        		$('#fccStatus').html('Free code camp is online!');
-		 //        	}
-		        	
-
-		        	
-		        
-		 //        },
-		 //        error:function(){
-		 //          alert("REQUEST failed");
-		 //        }
-
-
-
-   //    }) //end of ajax for FCC status
     for (var i =0; i < channelsArray.length; i++)
     {
 
@@ -242,16 +207,25 @@ body{
         	    	}
 
         	    	online =false;
-
+                    offline =true;
     	    	
     	
 		})
 
 	    	    $('#offline').on('click', function(){
 
-    	    	// $('#OfflineNow').css("display", "block");
-    	    	// $('#followerInfo').toggle();
-    	    	// $('#onlineNow').toggle();
+	    	    	if(offline)
+
+	    	    	{
+	    	    		$('#OfflineNow').css("display", "block");
+	    	    		$('#followerInfo').css("display", "none");
+    	    	$('#onlineNow').css("display", "none");
+	    	    	}
+	    	    	
+	    	    	offline=false;
+	    	    	online =true;
+
+
     	
 		})
    

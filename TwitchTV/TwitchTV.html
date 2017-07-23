@@ -66,6 +66,7 @@ body{
 		<a  target="_blank" href="https://www.twitch.tv/freecodecamp">
 			<h4 id="fccStatus"></h4>
 		</a>
+		<button id="all" class="btn btn-warning">All!</button>
 		<button id="online" class="btn btn-primary">Online!</button>
 		<button id="offline" class="btn btn-danger">Offline!</button>
 	</div>
@@ -102,10 +103,14 @@ body{
 	
 	$(document).ready(function() {
 
+		$("#onlineNow").css("display", "none");
+		$("#OfflineNow").css("display", "none");
+
 		// $('#offline').on('click', function(){
 		// 	$('div.display').removeClass( "display" ).addClass( "hidden" );	
 		// 	$('div.hidden').removeClass( "hidden" ).addClass( "display" );	
 		// })
+		var online=true;
 
 
 		var url = 'https://api.twitch.tv/kraken/streams/freecodecamp'
@@ -229,11 +234,27 @@ body{
 
         	    $('#online').on('click', function(){
 
-    	    	$('#OfflineNow').toggle();
-    	    	$('#followerInfo').toggle();
+        	    	if(online)
+        	    	{
+        	    		$('#onlineNow').css("display", "block");
+    	    	$('#followerInfo').css("display", "none");
+    	    	$('#OfflineNow').css("display", "none");
+        	    	}
 
+        	    	online =false;
+
+    	    	
     	
 		})
+
+	    	    $('#offline').on('click', function(){
+
+    	    	// $('#OfflineNow').css("display", "block");
+    	    	// $('#followerInfo').toggle();
+    	    	// $('#onlineNow').toggle();
+    	
+		})
+   
    
 
 

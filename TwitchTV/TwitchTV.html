@@ -159,41 +159,7 @@ body{
 		        },
 		        success:function(data2){
 		        
-		        // 	console.log(followersArray);
-		        // 	for (var i =0; i < followersArray.length; i++) {
-		        		
-		        // 		let url = "https://api.twitch.tv/kraken/streams/"+followersArray[i];
-		        // 		// console.log(url);
 
-		        // 		$.ajax({
-						    //     type: 'GET',
-						    //     url:url,
-						    //     async:false,
-						    //     dataType:'JSON',
-						    //     headers:{
-						    //     	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
-						    //     	// 'Accept': 'application/vnd.twitchtv.v5+json' 
-						    //     },
-						    //     success:function(data3){
-
-						    //     	if(data3.stream)
-						    //     	{
-						    //     		$('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='"+data3.stream.channel.logo+"'></div><div class='col-md-4' >"+data3.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='https://www.twitch.tv/"+followersArray[i]+"'>"+data3.stream.channel.status+"</a></div></div>")
-
-						    //     	}
-						    //     	else
-						    //     	{
-						    //     		$('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='http://www.journeybuds.com/contents/Images/NoImage.jpg'></div><div class='col-md-4' >"+followersArray[i]+"</div><div class='col-md-4' ><img src='http://vignette3.wikia.nocookie.net/canadians-vs-vampires/images/a/a4/Not_available_icon.jpg/revision/latest?cb=20130403054528'></div></div>")
-						    //     	}
-
-
-						        
-						    //     },
-						    //     error:function(){
-						    //       alert("REQUEST failed");
-						    //     }
-						    // })
-		        // 	}
 				        var displayName = data2.name;
 		        		var status = data2.status;
 		        		var logo = data2.logo;
@@ -219,13 +185,55 @@ body{
 
       }) //end of ajax for FCC follow channels 
 
-    	    $('#online').on('click', function(){
-
-
-		})
-
 
     }
+
+    	for (var i =0; i < channelsArray.length; i++) {
+		        		
+		         
+		        		
+		        		let url1 = "https://api.twitch.tv/kraken/streams/"+channelsArray[i];
+		        		console.log(url1);
+
+		        		$.ajax({
+						        type: 'GET',
+						        url:url1,
+						        
+						        dataType:'JSON',
+						        headers:{
+						        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
+						        	
+						        },
+						        success:function(data3){
+
+						        	if(data3.stream)
+						        	{
+						        		$('#onlineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+data3.stream.channel.logo+"'></div><div class='col-md-4' >"+data3.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='"+data3.stream.channel.url+"'>"+data3.stream.channel.status+"</a></div></div>")
+
+						        	}
+						        	else
+						        	{
+						        		$('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='http://www.journeybuds.com/contents/Images/NoImage.jpg'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4' ><img src='http://vignette3.wikia.nocookie.net/canadians-vs-vampires/images/a/a4/Not_available_icon.jpg/revision/latest?cb=20130403054528'></div></div>")
+						        	}
+
+
+						        
+						        },
+						        error:function(){
+						          alert("REQUEST failed");
+						        }
+						    })
+		        	}
+
+
+
+        	    $('#online').on('click', function(){
+
+    	    	$('#OfflineNow').toggle();
+    	    	$('#followerInfo').toggle();
+
+    	
+		})
    
 
 

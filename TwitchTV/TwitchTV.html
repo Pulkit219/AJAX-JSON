@@ -109,6 +109,7 @@ body{
 
 		var online=true;
 		var offline=true;
+		var all=true;
 
 
 		var url = 'https://api.twitch.tv/kraken/streams/freecodecamp'
@@ -201,14 +202,14 @@ body{
 
         	    	if(online)
         	    	{
-        	    		$('#onlineNow').css("display", "block");
+	    		$('#onlineNow').css("display", "block");
     	    	$('#followerInfo').css("display", "none");
     	    	$('#OfflineNow').css("display", "none");
         	    	}
 
         	    	online =false;
                     offline =true;
-    	    	
+    	    	    all=true;
     	
 		})
 
@@ -217,17 +218,31 @@ body{
 	    	    	if(offline)
 
 	    	    	{
-	    	    		$('#OfflineNow').css("display", "block");
-	    	    		$('#followerInfo').css("display", "none");
+	    		$('#OfflineNow').css("display", "block");
+	    		$('#followerInfo').css("display", "none");
     	    	$('#onlineNow').css("display", "none");
 	    	    	}
 	    	    	
 	    	    	offline=false;
 	    	    	online =true;
+	    	    	all=true;
 
 
     	
 		})
+
+	    	    $('#all').on('click',function(){
+	    	    	if(all){
+
+    			$('#followerInfo').css("display", "block");
+	    		$('#OfflineNow').css("display", "none");
+    	    	$('#onlineNow').css("display", "none");
+
+	    	    	}
+	    	    	all =false;
+	    	    	online =true;
+	    	    	offline =true;
+	    	    })
    
    
 

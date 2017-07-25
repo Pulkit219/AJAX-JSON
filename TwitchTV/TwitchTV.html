@@ -5,10 +5,12 @@
 <style type="text/css">
 
 body{
-	/*background-image: url('https://i.ytimg.com/vi/8gD_9WPPFb4/maxresdefault.jpg');
-	background-repeat: no-repeat;*/
+	background-image: url('https://i.ytimg.com/vi/a7L3o5E0bak/maxresdefault.jpg');
+	background-repeat: no-repeat;
 	font-family: 'Artifika', serif !important ;
 	font-size: 19px !important;
+	 background-attachment: fixed;
+    background-position: center; 
 }
 	
 	img
@@ -22,6 +24,7 @@ body{
 		padding-top: 2%;
 		border:5px red solid;
 		border-radius: 25px;
+		color: yellow;
 	}
 
 	#header
@@ -60,10 +63,10 @@ body{
 		<!-- <a  target="_blank" href="https://www.twitch.tv/freecodecamp"> -->
 		<!-- 	<h4 id="fccStatus"></h4>
 		</a>
- -->	<h3 id="fccStatus"></h3>
+ -->	<h2 id="fccStatus"></h2>
         <button id="all" class="btn btn-warning">All</button>
-		<button id="online" class="btn btn-primary">Online!</button>
-		<button id="offline" class="btn btn-danger">Offline!</button>
+		<button id="online" class="btn btn-primary">Channels Online!</button>
+		<button id="offline" class="btn btn-danger">Channels Offline!</button>
 	</div>
 	<div class="row text-center">
 		<h3>
@@ -108,7 +111,7 @@ body{
 
 
 		var url = 'https://api.twitch.tv/kraken/streams/freecodecamp'
-		let channelsArray=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas",'comster404' ];
+		let channelsArray=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas",'comster404', 'brunofin ' ];
 
 
 //LISTING ALL CHANNELS 

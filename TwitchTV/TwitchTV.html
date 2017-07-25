@@ -23,13 +23,6 @@ body{
 		border-radius: 25px;
 	}
 
-	.display{
-		display: block;
-	}
-	.hidden
-	{
-		display: none;
-	}
 	#header
 	{
 		background: rgba(0,0,0,.5);
@@ -66,8 +59,8 @@ body{
 		<!-- <a  target="_blank" href="https://www.twitch.tv/freecodecamp"> -->
 		<!-- 	<h4 id="fccStatus"></h4>
 		</a>
- -->	
-        <button id="all" class="btn btn-warning">All!</button>
+ -->	<h3 id="fccStatus"></h3>
+        <button id="all" class="btn btn-warning">All</button>
 		<button id="online" class="btn btn-primary">Online!</button>
 		<button id="offline" class="btn btn-danger">Offline!</button>
 	</div>
@@ -125,7 +118,7 @@ body{
     	   $.ajax({
 		        type: 'GET',
 		        url:'https://api.twitch.tv/kraken/channels/'+channelsArray[i],
-		        
+		        async: false,
 		        dataType:'JSON',
 		        headers:{
 		        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
@@ -151,8 +144,8 @@ body{
 		        error:function(data3){
 		          var status = data3.status;
 		          var logo = 'http://javahonk.com/wp-content/uploads/2015/09/2015-08-03-09_28_23-exception-icon-Google-Search2112.png';
-
-		          $('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+"</a></div></div>")
+                  
+		          $('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+" NOT FOUND</a></div></div>")
 		        }
 
 
@@ -166,11 +159,6 @@ body{
 
     	for ( var i =0; i < channelsArray.length; i++) {
 		        		
-		         
-		        		
-		        		// let url1 = "https://api.twitch.tv/kraken/streams/"+channelsArray[i];
-		        		
-		        	
 
 		        		$.ajax({
 		        		
@@ -184,14 +172,28 @@ body{
 						        },
 						        success:function(data4)
 						        {
-						        	
+						        	//GETTING ALL ONLINE CHANNELS
                               
 						        	if(data4.stream)
 						        	{
 						        		$('#onlineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+data4.stream.channel.logo+"'></div><div class='col-md-4' >"+data4.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='"+data4.stream.channel.url+"'>"+data4.stream.channel.status+"</a></div></div>")
 
 						        	}
+                                    //CHECKING FREE CODE CAMP STATUS
+						        	else if(channelsArray[i] === 'freecodecamp')
+						        	{
+						        		if(data4.stream)
+						        		{
+						        			$('#fccStatus').html('FreeCodeCamp is Online')
 
+						        		}
+						        		else
+						        		{
+						        			$('#fccStatus').html('FreeCodeCamp is Offline')
+
+						        		}
+						        	}
+                                   //GETTING ALL OFFLINE CHANNELS
 						        	else
 						        	{
 
@@ -226,7 +228,7 @@ body{
 													          var status = data6.status;
 													          var logo = 'http://javahonk.com/wp-content/uploads/2015/09/2015-08-03-09_28_23-exception-icon-Google-Search2112.png';
 
-													          $('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+"</a></div></div>")
+													          $('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+" NOT FOUND</a></div></div>")
 													        }
 
 											      }) 

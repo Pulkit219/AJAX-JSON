@@ -114,8 +114,10 @@ body{
 
 
 		var url = 'https://api.twitch.tv/kraken/streams/freecodecamp'
-		let channelsArray=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
-	
+		let channelsArray=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas",'comster404' ];
+
+
+//LISTING ALL CHANNELS 
 
     for (var i =0; i < channelsArray.length; i++)
     {
@@ -139,7 +141,7 @@ body{
 
 		        		if(data2.logo === null)
 		        		{
-		        			logo = 'https://www.qoovee.com/static/img/noImage.707313a1e614.png';
+		        			logo = 'https://megazine3.de/wp-content/plugins/sgmbPro//img/no-image.png';
 		        		}
 
 		        		$('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+displayName+"</div><div class='col-md-4' ><a target='_blank' href='"+channelUrl+"'>"+status+"</a></div></div>")
@@ -148,33 +150,33 @@ body{
 		        },
 		        error:function(data3){
 		          var status = data3.status;
-		          var logo = 'https://www.qoovee.com/static/img/noImage.707313a1e614.png';
+		          var logo = 'http://javahonk.com/wp-content/uploads/2015/09/2015-08-03-09_28_23-exception-icon-Google-Search2112.png';
 
 		          $('#followerInfo').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+"</a></div></div>")
 		        }
 
 
 
-      }) //end of ajax for FCC follow channels 
+      }) //end of ajax for FCC FOLLOWERS channels 
 
 
     }
 
- var i;
-    	for ( i =0; i < channelsArray.length; i++) {
+//CHECKING ONLINE/OFFLINE STREAMS
+
+    	for ( var i =0; i < channelsArray.length; i++) {
 		        		
 		         
 		        		
-		        		let url1 = "https://api.twitch.tv/kraken/streams/"+channelsArray[i];
-		        		console.log(url1);
-		        		var ch ;
+		        		// let url1 = "https://api.twitch.tv/kraken/streams/"+channelsArray[i];
 		        		
+		        	
 
 		        		$.ajax({
 		        		
 						        type: 'GET',
-						        url:url1,
-						        
+						        url:"https://api.twitch.tv/kraken/streams/"+channelsArray[i],
+						        async: false,
 						        dataType:'JSON',
 						        headers:{
 						        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
@@ -182,54 +184,61 @@ body{
 						        },
 						        success:function(data4)
 						        {
-						        	console.log(ch);
+						        	
                               
 						        	if(data4.stream)
 						        	{
 						        		$('#onlineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+data4.stream.channel.logo+"'></div><div class='col-md-4' >"+data4.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='"+data4.stream.channel.url+"'>"+data4.stream.channel.status+"</a></div></div>")
 
 						        	}
+
 						        	else
 						        	{
-						        		console.log(channelsArray[i])
-						        		
 
-						        		 // $.ajax({
-											      //   type: 'GET',
-											      //   url:url5,
-											        
-											      //   dataType:'JSON',
-											      //   headers:{
-											      //   	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
+						        		 $.ajax({
+											        type: 'GET',
+											        url:"https://api.twitch.tv/kraken/channels/"+channelsArray[i],
+											        async: false,
+											        dataType:'JSON',
+											        headers:{
+											        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
 											        	
-											      //   },
-											      //   	        success:function(data5){
-											      //   	      console.log(url5)
-															  //       var displayName = data5.name;
-													    //     		var status = data5.status;
-													    //     		var logo = data5.logo;
-													    //     		var channelUrl = data5.url;
+											        },
+											        	        success:function(data5){
 
-													    //     		if(data5.logo === null)
-													    //     		{
-													    //     			logo = 'https://www.qoovee.com/static/img/noImage.707313a1e614.png';
-													    //     		}
+											        	        	
+											        	      
+															        var displayName = data5.name;
+													        		var status = data5.status;
+													        		var logo = data5.logo;
+													        		var channelUrl = data5.url;
 
-													    //     		$('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+displayName+"</div><div class='col-md-4' ><a target='_blank' href='"+channelUrl+"'>"+status+"</a></div></div>")
+													        		if(data5.logo === null)
+													        		{
+													        			logo = 'https://megazine3.de/wp-content/plugins/sgmbPro//img/no-image.png';
+													        		}
+
+													        		$('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+displayName+"</div><div class='col-md-4' ><a target='_blank' href='"+channelUrl+"'>"+status+"</a></div></div>")
 
 
-													    //     },
-													    //     error:function(data6){
-													    //       var status = data6.status;
-													    //       var logo = 'https://www.qoovee.com/static/img/noImage.707313a1e614.png';
+													        },
+													        error:function(data6){
+													          var status = data6.status;
+													          var logo = 'http://javahonk.com/wp-content/uploads/2015/09/2015-08-03-09_28_23-exception-icon-Google-Search2112.png';
 
-													    //       $('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+"</a></div></div>")
-													    //     }
+													          $('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+"</a></div></div>")
+													        }
 
-											      // }) 
+											      }) 
+						        		
 						        	
-						        	}
 
+						        	}
+						        	
+						        		
+						        		
+						        	
+						        
 
 						        
 						        },
@@ -239,6 +248,8 @@ body{
 						    })
 		        	}
 
+
+// CONFIGURING ONLINE/OFFLINE BUTTONS
 
 
         	    $('#online').on('click', function(){

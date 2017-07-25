@@ -23,7 +23,7 @@ body{
 		background-image: url('https://ak8.picdn.net/shutterstock/videos/17244421/thumb/6.jpg?i10c=img.resize(height:72)');
 		/*background-repeat: no-repeat;*/
 		background-attachment: fixed;
-	    background-position: center; 
+	    background-position: left; 
 		margin: 2%;
 		padding: 2% ;
 		border:3px #0f0606 solid;
@@ -37,7 +37,7 @@ body{
 		/*background: rgba(0,0,0,.5);*/
 		background-image: url('https://ak8.picdn.net/shutterstock/videos/17244421/thumb/6.jpg?i10c=img.resize(height:72)');
 		background-attachment: fixed;
-	    background-position: center; 
+	    background-position: left; 
 		border:3px #0f0606 solid;
 		border-radius: 25px;
 	}
@@ -45,6 +45,10 @@ body{
 	#fccStatus, #header, #lcs
 	{
 		color:  #ecf90c;
+	}
+	div.col-md-4 > a
+	{
+		color: #20e7f9;
 	}
 </style>
 
@@ -201,12 +205,12 @@ body{
 						        	{
 						        		if(data4.stream)
 						        		{
-						        			$('#fccStatus').html('FreeCodeCamp is Online')
+						        			$('#fccStatus').html('FreeCodeCamp is currently Online')
 
 						        		}
 						        		else
 						        		{
-						        			$('#fccStatus').html('FreeCodeCamp is Offline')
+						        			$('#fccStatus').html('FreeCodeCamp is currently Offline')
 
 						        		}
 						        	}

@@ -62,11 +62,12 @@ body{
 <div class="container">
 	<div id="header" class="text-center">
 		<h1>Twitch TV</h1><br>
-		<h3>FreeCodeCamp</h3>
-		<a  target="_blank" href="https://www.twitch.tv/freecodecamp">
-			<h4 id="fccStatus"></h4>
+		<!-- <h3>FreeCodeCamp</h3> -->
+		<!-- <a  target="_blank" href="https://www.twitch.tv/freecodecamp"> -->
+		<!-- 	<h4 id="fccStatus"></h4>
 		</a>
-		<button id="all" class="btn btn-warning">All!</button>
+ -->	
+        <button id="all" class="btn btn-warning">All!</button>
 		<button id="online" class="btn btn-primary">Online!</button>
 		<button id="offline" class="btn btn-danger">Offline!</button>
 	</div>
@@ -113,7 +114,7 @@ body{
 
 
 		var url = 'https://api.twitch.tv/kraken/streams/freecodecamp'
-		var channelsArray=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", 'brunofin', 'comster404' ];
+		let channelsArray=["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 	
 
     for (var i =0; i < channelsArray.length; i++)
@@ -159,14 +160,18 @@ body{
 
     }
 
-    	for (var i =0; i < channelsArray.length; i++) {
+ var i;
+    	for ( i =0; i < channelsArray.length; i++) {
 		        		
 		         
 		        		
 		        		let url1 = "https://api.twitch.tv/kraken/streams/"+channelsArray[i];
 		        		console.log(url1);
+		        		var ch ;
+		        		
 
 		        		$.ajax({
+		        		
 						        type: 'GET',
 						        url:url1,
 						        
@@ -175,16 +180,54 @@ body{
 						        	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
 						        	
 						        },
-						        success:function(data3){
-
-						        	if(data3.stream)
+						        success:function(data4)
+						        {
+						        	console.log(ch);
+                              
+						        	if(data4.stream)
 						        	{
-						        		$('#onlineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+data3.stream.channel.logo+"'></div><div class='col-md-4' >"+data3.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='"+data3.stream.channel.url+"'>"+data3.stream.channel.status+"</a></div></div>")
+						        		$('#onlineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+data4.stream.channel.logo+"'></div><div class='col-md-4' >"+data4.stream.channel.display_name+"</div><div class='col-md-4' ><a target='_blank' href='"+data4.stream.channel.url+"'>"+data4.stream.channel.status+"</a></div></div>")
 
 						        	}
 						        	else
 						        	{
-						        		$('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='http://www.journeybuds.com/contents/Images/NoImage.jpg'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4' ><img src='http://vignette3.wikia.nocookie.net/canadians-vs-vampires/images/a/a4/Not_available_icon.jpg/revision/latest?cb=20130403054528'></div></div>")
+						        		console.log(channelsArray[i])
+						        		
+
+						        		 // $.ajax({
+											      //   type: 'GET',
+											      //   url:url5,
+											        
+											      //   dataType:'JSON',
+											      //   headers:{
+											      //   	'Client-ID':'5gtdkn7ub0h09hnq7nms8nno15fuas'
+											        	
+											      //   },
+											      //   	        success:function(data5){
+											      //   	      console.log(url5)
+															  //       var displayName = data5.name;
+													    //     		var status = data5.status;
+													    //     		var logo = data5.logo;
+													    //     		var channelUrl = data5.url;
+
+													    //     		if(data5.logo === null)
+													    //     		{
+													    //     			logo = 'https://www.qoovee.com/static/img/noImage.707313a1e614.png';
+													    //     		}
+
+													    //     		$('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+displayName+"</div><div class='col-md-4' ><a target='_blank' href='"+channelUrl+"'>"+status+"</a></div></div>")
+
+
+													    //     },
+													    //     error:function(data6){
+													    //       var status = data6.status;
+													    //       var logo = 'https://www.qoovee.com/static/img/noImage.707313a1e614.png';
+
+													    //       $('#OfflineNow').prepend("<div class='row '><div class='col-md-4'><img src='"+logo+"'></div><div class='col-md-4' >"+channelsArray[i]+"</div><div class='col-md-4'><a href='#'>"+status+"</a></div></div>")
+													    //     }
+
+											      // }) 
+						        	
 						        	}
 
 
